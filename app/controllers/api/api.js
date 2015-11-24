@@ -55,7 +55,7 @@ router.post('/api/bottles', authenticatedUser, function (req, res){
 })
 
 // UPDATE
-router.put('/api/bottle/:id', function (req, res) {
+router.put('/api/bottle/:id', authenticatedUser, function (req, res) {
   Bottle.findByIdAndUpdate(req.params.id, req.body.bottle, function (err, bottle){
     if (err){
       res.send(err);
@@ -66,7 +66,7 @@ router.put('/api/bottle/:id', function (req, res) {
 });
 
 // DELETE
-router.get('/api/bottles/:id/delete', function (req, res) {
+router.get('/api/bottles/:id/delete', authenticatedUser,function (req, res) {
   Bottle.findByIdAndRemove(req.params.id, function (err, service) {
      console.log(req.params)
      if (err) {
