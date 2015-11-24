@@ -26,8 +26,8 @@ var config = {
     app: {
       name: 'wdi-express'
     },
-    port: 3000,
-    db: 'mongodb://heroku_bf7pkb7s:1dhhubiiemh7vaojl4a9ejbqkn@ds057214.mongolab.com:57214/heroku_bf7pkb7s'
+    port: (process.env.PORT || 3000),
+    db: process.env.MONGOLAB_URI
   }
 };
 
