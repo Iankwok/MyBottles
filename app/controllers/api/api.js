@@ -1,6 +1,7 @@
 var express  = require('express');
 var router   = express.Router();
 var mongoose = require('mongoose');
+var Bottle   = require('../../models/bottle');
 
 module.exports = function (app) {
   app.use('/', router);
@@ -18,4 +19,49 @@ function authenticatedUser(req, res, next) {
 
 router.get('/secret', authenticatedUser, function (req, res, next) {
   res.json({message: "secret"});
+});
+
+//INDEX
+router.get('/api/bottles', authenticatedUser,function(req, res){
+  Bottle.find({}, function(err, bottles){
+    if (err){
+      res.send("Something Wrong happened" + err)
+    } else {
+      res.send(bottles);
+    }
+  });
+})
+
+// SHOW
+router.get('/api/bottles/:id',authenticatedUser, function (req, res){
+  Bottle.findById(req.params.id, function (err, bottles){
+    if (err) {
+      res.send("something wrong happened " + err )
+    } else {
+      res.send(bottles);
+    }
+  });
+})
+// ​
+// // CREATE req.body.bottle gives empty {}
+router.post('/api/bottles', authenticatedUser, function (req, res){
+  Bottle.create(req.body.bottle, function (err, bottles){
+    if (err) {
+      res.send("something wrong happened " + err )
+    } else {
+      res.redirect('/api/bottles');
+    }
+  });
+})
+
+// DELETE
+router.get('/api/bottles/:id/delete', function (req, res) {
+  Service.findByIdAndRemove(req.params.id, function (err, service) {
+     console.log(req.params)
+     if (err) {
+       res.send(err);
+     } else {
+       res.json({message: 'Succesfully deleted'})
+     }
+  })
 });
