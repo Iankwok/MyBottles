@@ -42,8 +42,8 @@ router.get('/api/bottles/:id',authenticatedUser, function (req, res){
     }
   });
 })
-// ​
-// // CREATE req.body.bottle gives empty {}
+
+// CREATE req.body.bottle gives empty {}
 router.post('/api/bottles', authenticatedUser, function (req, res){
   Bottle.create(req.body.bottle, function (err, bottles){
     if (err) {
@@ -54,9 +54,20 @@ router.post('/api/bottles', authenticatedUser, function (req, res){
   });
 })
 
+// UPDATE
+router.put('/api/bottle/:id', function (req, res) {
+  Bottle.findByIdAndUpdate(req.params.id, req.body.bottle, function (err, bottle){
+    if (err){
+      res.send(err);
+    } else {
+      res.json({message: "Bottles updated!"});
+    }
+  })
+});
+
 // DELETE
 router.get('/api/bottles/:id/delete', function (req, res) {
-  Service.findByIdAndRemove(req.params.id, function (err, service) {
+  Bottle.findByIdAndRemove(req.params.id, function (err, service) {
      console.log(req.params)
      if (err) {
        res.send(err);
