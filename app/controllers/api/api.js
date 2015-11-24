@@ -55,7 +55,7 @@ router.post('/api/bottles', authenticatedUser, function (req, res){
 })
 
 // UPDATE
-router.put('/api/bottle/:id', authenticatedUser, function (req, res) {
+router.put('/api/bottles/:id', authenticatedUser, function (req, res) {
   Bottle.findByIdAndUpdate(req.params.id, req.body.bottle, function (err, bottle){
     if (err){
       res.send(err);
