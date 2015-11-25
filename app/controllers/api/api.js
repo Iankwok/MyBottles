@@ -13,7 +13,7 @@ function authenticatedUser(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    return res.json({message: "Please Login"});
+    return res.status(401).json({message: "Please Login"});
   }
 }
 
@@ -25,9 +25,9 @@ router.get('/secret', authenticatedUser, function (req, res, next) {
 router.get('/api/bottles', authenticatedUser,function(req, res){
   Bottle.find({user_id: req.user.id}, function(err, bottles){
     if (err){
-      res.send("Something Wrong happened" + err)
+      res.status(400).json({error: err});
     } else {
-      res.send(bottles);
+      res.status(200).json({bottles: bottles});
     }
   });
 })
@@ -36,15 +36,11 @@ router.get('/api/bottles', authenticatedUser,function(req, res){
 router.post('/api/bottles', authenticatedUser, function (req, res){
   var bottleParams = req.body.bottle;
   bottleParams.user_id = req.user.id;
-  Bottle.create(bottleParams, function (err, bottles){
+  Bottle.create(bottleParams, function (err, bottle){
     if (err) {
-      res.send("something wrong happened " + err )
+      res.status(400).json({error: err});
     } else {
-      //update user model's bottle id
-      // Bottle.findby({user_id: req.user._id}, function (err, bottle){
-      //   req.body.user.bottle_id = bottle.id;
-      // })
-      res.redirect('/api/bottles');
+      res.status(200).json({message: 'Succesfully Created', bottle: bottle})
     }
   });
 })
@@ -53,9 +49,9 @@ router.post('/api/bottles', authenticatedUser, function (req, res){
 router.get('/api/bottles/:id', authenticatedUser, function (req, res){
   Bottle.findOne({_id: req.params.id, user_id: req.user._id}, function (err, bottle){
     if (err) {
-      res.send("something wrong happened " + err )
+      res.status(404).json({error: err});
     } else {
-      res.send(bottle);
+      res.status(200).json({bottle: bottle})
     }
   });
 })
@@ -64,9 +60,9 @@ router.get('/api/bottles/:id', authenticatedUser, function (req, res){
 router.put('/api/bottles/:id', authenticatedUser, function (req, res) {
   Bottle.findOneAndUpdate({_id: req.params.id, user_id: req.user._id}, req.body.bottle, function (err, bottle){
     if (err){
-      res.send(err);
+      res.status(401).json({error: err});
     } else {
-      res.json({message: "Bottles updated!"});
+      res.status(200).json({message: "Bottles updated!", bottle: bottle});
     }
   })
 });
@@ -76,9 +72,9 @@ router.get('/api/bottles/:id/delete', authenticatedUser,function (req, res) {
   Bottle.findOneAndRemove({_id: req.params.id, user_id: req.user._id}, req.body.bottle, function (err, service) {
      console.log(req.params)
      if (err) {
-       res.send(err);
+       res.status(400).json({error: err});
      } else {
-       res.json({message: 'Succesfully deleted'})
+       res.status(200).json({message: 'Succesfully deleted'})
      }
   })
 });
