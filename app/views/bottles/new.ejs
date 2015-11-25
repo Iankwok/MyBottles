@@ -1,0 +1,22 @@
+<h1>Add a Bottle</h1>
+<fieldset>
+  <form method="POST" action="/bottles">
+    <div class="form-group col-md-4">
+      <input id='wineName' name="bottle[wineName]" class="form-control" placeholder="Bottle Name"/>
+    </div>
+    <div class="form-group col-md-4">
+      <input id='description' name="bottle[descritpion]"  class="form-control" placeholder="Description"/>
+    </div>
+    <div class="form-group col-md-4">
+      <input id='year' name="bottle[year]"  class="form-control" placeholder="Year"/>
+    </div>
+    <div class="form-group col-md-4">
+      <input id='quantity' name="bottle[quantity]"  class="form-control" placeholder="Qty"/>
+    </div>
+    <div class="form-group col-md-4">
+      <button id='addBottle' class="btn btn-success col-md-12">Add Bottles</button>
+    </div>
+  </form>
+</fieldset>
+
+<script type="text/javascript" src="/js/bottle/new.js"></script>

@@ -62,19 +62,18 @@ router.put('/api/bottles/:id', authenticatedUser, function (req, res) {
     if (err){
       res.status(401).json({error: err});
     } else {
-      res.status(200).json({message: "Bottles updated!", bottle: bottle});
+      res.status(200).json({message: "Bottles updated!"});
     }
   })
 });
 
 // DELETE
-router.get('/api/bottles/:id/delete', authenticatedUser,function (req, res) {
+router.delete('/api/bottles/:id', authenticatedUser,function (req, res) {
   Bottle.findOneAndRemove({_id: req.params.id, user_id: req.user._id}, req.body.bottle, function (err, service) {
-     console.log(req.params)
-     if (err) {
-       res.status(400).json({error: err});
-     } else {
-       res.status(200).json({message: 'Succesfully deleted'})
-     }
+    if (err) {
+      res.status(400).json({error: err});
+    } else {
+      res.status(200).json({message: 'Succesfully deleted'})
+    }
   })
 });

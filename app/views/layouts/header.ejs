@@ -1,1 +1,11 @@
-<header id="header">MyBottles</header>
+<header id="header">
+  <a href="/" id='title'>MyBottles</a>
+
+  <ul class="nav navbar-nav navbar-right">
+    <% if (user) { %>
+      <li><a href="/bottles" id='title-link'>Bottles</a></li>
+      <li><a href="/signout" id='title-link'>Logout</a></li>
+    <% } %>
+  </ul>
+
+</header>
