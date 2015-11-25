@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt');
+var Bottle   = require('./bottle');
 var Schema   = mongoose.Schema;
 
 var UserSchema = new Schema({
+  bottle_id: [{type: Schema.Types.ObjectId, ref: 'Bottle'}],
   local: {
     name:     { type: String },
     email:    { type: String },

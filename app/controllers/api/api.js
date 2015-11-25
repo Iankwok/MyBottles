@@ -23,7 +23,7 @@ router.get('/secret', authenticatedUser, function (req, res, next) {
 
 //INDEX
 router.get('/api/bottles', authenticatedUser,function(req, res){
-  Bottle.find({}, function(err, bottles){
+  Bottle.find({user_id: req.user.id}, function(err, bottles){
     if (err){
       res.send("Something Wrong happened" + err)
     } else {
@@ -32,31 +32,37 @@ router.get('/api/bottles', authenticatedUser,function(req, res){
   });
 })
 
-// SHOW
-router.get('/api/bottles/:id',authenticatedUser, function (req, res){
-  Bottle.findById(req.params.id, function (err, bottles){
+//CREATE
+router.post('/api/bottles', authenticatedUser, function (req, res){
+  var bottleParams = req.body.bottle;
+  bottleParams.user_id = req.user.id;
+  Bottle.create(bottleParams, function (err, bottles){
     if (err) {
       res.send("something wrong happened " + err )
     } else {
-      res.send(bottles);
+      //update user model's bottle id
+      // Bottle.findby({user_id: req.user._id}, function (err, bottle){
+      //   req.body.user.bottle_id = bottle.id;
+      // })
+      res.redirect('/api/bottles');
     }
   });
 })
 
-// CREATE req.body.bottle gives empty {}
-router.post('/api/bottles', authenticatedUser, function (req, res){
-  Bottle.create(req.body.bottle, function (err, bottles){
+// SHOW
+router.get('/api/bottles/:id', authenticatedUser, function (req, res){
+  Bottle.findOne({_id: req.params.id, user_id: req.user._id}, function (err, bottle){
     if (err) {
       res.send("something wrong happened " + err )
     } else {
-      res.redirect('/api/bottles');
+      res.send(bottle);
     }
   });
 })
 
 // UPDATE
 router.put('/api/bottles/:id', authenticatedUser, function (req, res) {
-  Bottle.findByIdAndUpdate(req.params.id, req.body.bottle, function (err, bottle){
+  Bottle.findOneAndUpdate({_id: req.params.id, user_id: req.user._id}, req.body.bottle, function (err, bottle){
     if (err){
       res.send(err);
     } else {
@@ -67,7 +73,7 @@ router.put('/api/bottles/:id', authenticatedUser, function (req, res) {
 
 // DELETE
 router.get('/api/bottles/:id/delete', authenticatedUser,function (req, res) {
-  Bottle.findByIdAndRemove(req.params.id, function (err, service) {
+  Bottle.findOneAndRemove({_id: req.params.id, user_id: req.user._id}, req.body.bottle, function (err, service) {
      console.log(req.params)
      if (err) {
        res.send(err);
