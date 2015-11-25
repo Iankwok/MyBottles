@@ -1,7 +1,43 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
 }
-a {
-  color: #00B7FF;
+
+#header {
+  width: 100%;
+  height: 60px;
+  background-color: #4B394E;
+  font-size: 22px;
+  font-style: italic;
+  color: #82C1A9;
+  padding: 10px;
+  position: relative;
+}
+
+#overlay{
+  position: absolute;
+  top: 120px;
+  left: 70px;
+  z-index:1;
+  color: white;
+}
+
+#overlay h1{
+  font-size: 3.75em;
+  text-shadow: 1px 1px 1px #000;
+
+}
+
+#overlay p{
+  font-size: 1.50em;
+  text-shadow: 1px 1px 1px #000
+}
+
+#overlay button{
+  border: none;
+  background-color: #4B394E;
+  margin-top: 20px;
+}
+
+#login {
+  margin-left: 30px;
 }
