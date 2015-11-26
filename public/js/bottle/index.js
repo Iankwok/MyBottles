@@ -6,15 +6,30 @@ $(function(){
   API.getBottles().then(function(data){
     data.bottles.forEach(function(bottle){
       $('#index-bottles').append('\
-        <div class="well">\
-          <ul>\
-            <li>Bottle Name: '+ bottle.wineName +' </li>\
-            <li>Description: '+ bottle.description +'</li>\
-            <li>Year: '+ bottle.year +'</li>\
-            <li>Quantity: '+ bottle.quantity +'</li>\
-            <li><a href="/bottles/'+ bottle._id +'/edit" class="button btn btn-lg">Edit</a></li>\
-            <li><button data-id="' + bottle._id + '"class="delete-btn btn btn-danger">Delete</button></li>\
-          </ul>\
+        <div class="container-fluid>\
+          <div class="row">\
+            <div class="col-xs-12 col-sm-offset-2 col-sm-8">\
+              <ul class="event-list">\
+                <li>\
+                  <time>\
+                    <span>\
+                      <img src="../img/addbottle.jpg" alt="">\
+                    </span>\
+                  </time>\
+                  <div class="info">\
+                    <h2>'+ bottle.wineName +' </h2>\
+                    <p>Description: '+ bottle.description +'</p>\
+                    <p>Year: '+ bottle.year +'</p>\
+                    <p>Quantity: '+ bottle.quantity +'</p>\
+                    <a href="/bottles/'+ bottle._id +'/edit">\
+                    <button class="edit-btn btn btn-warning">Edit</button>\
+                    </a>\
+                    <button data-id="' + bottle._id + '"class="delete-btn btn btn-danger">Delete</button>\
+                  </div>\
+                </li>\
+              </ul>\
+            </div>\
+          </div>\
         </div>\
       ')
     })

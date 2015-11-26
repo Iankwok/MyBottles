@@ -17,9 +17,8 @@ $(function(){
     };
 
     API.createBottle(params).then(function(data){
-      window.location.href = "/bottles/" + data.bottle._id;
+      window.location.href = "/bottles/";
     }, errorHandling);
-
   })
 
 });

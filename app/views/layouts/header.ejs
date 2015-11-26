@@ -1,10 +1,14 @@
 <header id="header">
-  <a href="/" id='title'>MyBottles</a>
+
+  <ul class="nav navbar-nav navbar-left">
+    <li><a href="/" class='title'>MyBottles</a></li>
+  </ul>
 
   <ul class="nav navbar-nav navbar-right">
     <% if (user) { %>
-      <li><a href="/bottles" id='title-link'>Bottles</a></li>
-      <li><a href="/signout" id='title-link'>Logout</a></li>
+      <li><a href="/bottles/new" class='title-link'>Add Bottle</a></li>
+      <li><a href="/bottles" class='title-link'>Bottles</a></li>
+      <li><a href="/signout" class='title-link'>Logout</a></li>
     <% } %>
   </ul>
 
