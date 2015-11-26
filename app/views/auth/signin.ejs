@@ -1,19 +1,32 @@
-<h2>Signin</h2>
-
 <% if (message.length > 0) { %>
   <div class="alert alert-danger"><%= message %></div>
 <% } %>
 
-<form method="post" action="/signin">
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input class="form-control" type="text" name="email" id="email">
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 class="panel-title">Sign In</h1>
+        </div>
 
-  <div class="form-group">
-    <label for="email">Password</label>
-    <input class="form-control" type="password" name="password" id="password">
-  </div>
+        <div class="panel-body">
+          <form method="post" action="/signin">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input class="form-control" type="text" name="email" id="email">
+            </div>
+            <div class="form-group">
+              <label for="email">Password</label>
+              <input class="form-control" type="password" name="password" id="password">
+            </div>
+            <center><input class="btn btn-block btn-lg btn-submit" type="submit"></center>
+          </form>
+          <center><p>OR</p></center>
+          <a class="btn btn-lg btn-facebook btn-block" href='/auth/facebook'>Sign In with Facebook</a>
+        </div>
 
-  <input class="btn btn-default" type="submit">
-</form>
+      </div>
+    </div>
+  </div>
+</div>

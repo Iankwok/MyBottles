@@ -41,6 +41,11 @@ module.exports = function(app, config) {
 
   // PASSPORT SETUP
   require(config.root + "/config/passport.js")(passport);
+  // if (user) {...}
+ app.use(function (req, res, next) {
+   global.user = req.user;
+   next()
+ });
 
   // CONTROLLER SETUP
   var controllers = glob.sync(config.root + '/app/controllers/*.js');

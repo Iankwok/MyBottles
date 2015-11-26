@@ -1,7 +1,105 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
 }
-a {
-  color: #00B7FF;
+
+#header {
+  width: 100%;
+  height: 60px;
+  background-color: #4B394E;
+  position: relative;
+}
+
+.title {
+  font-size: 22px;
+  font-style: italic;
+  color: #82C1A9;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.title-link {
+  font-size: 16px;
+  font-style: italic;
+  color: #82C1A9;
+  padding: 10px;
+  margin-right: 30px;
+  margin-top: 5px;
+}
+
+#overlay {
+  position: absolute;
+  top: 120px;
+  left: 70px;
+  z-index:1;
+  color: white;
+}
+
+#overlay h1 {
+  font-size: 3.75em;
+  text-shadow: 1px 1px 1px #000;
+}
+
+#overlay p {
+  font-size: 1.50em;
+  text-shadow: 1px 1px 1px #000
+}
+
+#overlay button {
+  border: none;
+  background-color: #4B394E;
+  margin-top: 20px;
+}
+
+.btn-signin {
+  margin-left: 30px;
+  color: white
+}
+
+.btn-signup {
+  color: white;
+}
+
+.btn-facebook {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #2b4b90;
+  border-color: #133783 #133783 #091b40;
+}
+
+.btn-submit {
+  color: #ffffff;
+  background-color: #82C1A9;
+  border:none;
+  margin-bottom: 5px;
+}
+
+#index-bottles ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+/*testing*/
+
+.event-list > li {
+  box-shadow: 0px 0px 5px rgb(51, 51, 51);
+  text-align: center;
+}
+.event-list > li > time {
+  display: inline-block;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  /*background-color: rgb(197, 44, 102);*/
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+time > span >img {
+  height: 120px;
+  width: auto;
+}
+
+.delete-btn, .edit-btn{
+  margin-bottom: 10px;
+  margin-left: 10px;
 }

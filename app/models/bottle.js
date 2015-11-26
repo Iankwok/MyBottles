@@ -5,7 +5,7 @@ var Schema   = mongoose.Schema;
 var BottleSchema = new Schema({
     wineName:     { type: String },
     description:    { type: String },
-    year: { type: Date },
+    year: { type: Number },
     quantity: { type: Number },
     user_id: {type: Schema.Types.ObjectId, ref: 'User'}
 });
